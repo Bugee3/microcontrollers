@@ -1,0 +1,62 @@
+#include "stm32f4xx_hal.h"
+
+// Определяем пины
+#define TRIG_PIN GPIO_PIN_0
+#define ECHO_PIN GPIO_PIN_1
+#define GPIO_PORT GPIOA
+
+// Функция для отправки импульса на TRIG
+void SendTrigPulse(void) {
+    HAL_GPIO_WritePin(GPIO_PORT, TRIG_PIN, GPIO_PIN_SET); // Устанавливаем TRIG в высокий уровень
+    HAL_Delay(0.01);  // Задержка 10 мс (настройка длины импульса)
+    HAL_GPIO_WritePin(GPIO_PORT, TRIG_PIN, GPIO_PIN_RESET); // Возвращаем TRIG в низкий уровень
+}
+
+// Функция для измерения длительности импульса на ECHO
+uint32_t MeasureEchoDuration(void) {
+    uint32_t duration = 0;
+    while(HAL_GPIO_ReadPin(GPIO_PORT, ECHO_PIN) == GPIO_PIN_RESET);  // Ждем, пока ECHO не станет высоким
+
+    // Засекаем время, пока ECHO не станет низким
+    while(HAL_GPIO_ReadPin(GPIO_PORT, ECHO_PIN) == GPIO_PIN_SET) {
+        duration++;  // Увеличиваем длительность, пока сигнал HIGH
+        HAL_Delay(1);  // Задержка 1 мс
+    }
+
+    return duration;  // Возвращаем длительность сигнала
+}
+
+// Функция для вычисления расстояния
+float CalculateDistance(uint32_t duration) {
+    // Скорость звука примерно 343 м/с
+    // Время туда и обратно
+    float distance = (duration * 0.0343) / 2.0;  // Делим на 2, так как время туда и обратно
+    return distance;
+}
+
+int main(void) {
+    HAL_Init();
+    __HAL_RCC_GPIOA_CLK_ENABLE();  // Включаем тактирование порта A
+
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+    // Настройка пина TRIG как выход
+    GPIO_InitStruct.Pin = TRIG_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIO_PORT, &GPIO_InitStruct);
+
+    // Настройка пина ECHO как вход
+    GPIO_InitStruct.Pin = ECHO_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIO_PORT, &GPIO_InitStruct);
+
+    while (1) {
+        SendTrigPulse();  // Отправляем импульс на TRIG
+        uint32_t duration = MeasureEchoDuration();  // Измеряем продолжительность сигнала на ECHO
+        float distance = CalculateDistance(duration);  // Вычисляем расстояние
+        HAL_Delay(1000);  // Задержка 1 секунда между измерениями
+    }
+}

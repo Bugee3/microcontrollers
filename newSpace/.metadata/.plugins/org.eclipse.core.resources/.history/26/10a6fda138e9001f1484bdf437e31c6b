@@ -1,0 +1,92 @@
+#include "stm32f4xx_hal.h"
+#include "usart.h"  // Include the USART header (make sure it's initialized in STM32CubeMX)
+
+#define TRIG_PIN GPIO_PIN_0
+#define ECHO_PIN GPIO_PIN_1
+#define GPIO_PORT GPIOA
+
+UART_HandleTypeDef huart2;  // UART handler for USART2
+
+// Redirect printf to USART2 (or whatever USART you configured)
+int __io_putchar(int ch) {
+    HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xFFFF);
+    return ch;
+}
+
+// Function to send pulse on TRIG pin
+void SendTrigPulse(void) {
+    HAL_GPIO_WritePin(GPIO_PORT, TRIG_PIN, GPIO_PIN_SET); // Set TRIG pin high
+    HAL_Delay(10);  // Delay for 10ms to generate pulse
+    HAL_GPIO_WritePin(GPIO_PORT, TRIG_PIN, GPIO_PIN_RESET); // Set TRIG pin low
+}
+
+// Function to measure the duration of the pulse on ECHO pin
+uint32_t MeasureEchoDuration(void) {
+    uint32_t duration = 0;
+    // Wait until ECHO pin goes high (start of pulse)
+    while(HAL_GPIO_ReadPin(GPIO_PORT, ECHO_PIN) == GPIO_PIN_RESET);
+
+    // Measure the pulse duration
+    while(HAL_GPIO_ReadPin(GPIO_PORT, ECHO_PIN) == GPIO_PIN_SET) {
+        duration++;  // Increment duration for each millisecond
+        HAL_Delay(1);  // Wait for 1ms
+    }
+
+    return duration;
+}
+
+// Function to calculate distance based on pulse duration
+float CalculateDistance(uint32_t duration) {
+    // Speed of sound is approximately 343 meters per second
+    // Time for the sound to travel to the object and back
+    float distance = (duration * 0.0343) / 2.0;  // Divide by 2 for one-way distance
+    return distance;
+}
+
+int main(void) {
+    HAL_Init();  // Initialize the HAL library
+    SystemClock_Config();  // Set system clock (make sure this is configured in CubeMX)
+
+    // Enable GPIOA clock
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+
+    // Enable USART2 clock
+    __HAL_RCC_USART2_CLK_ENABLE();
+
+    // Initialize the TRIG pin (PA0) as output
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = TRIG_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    HAL_GPIO_Init(GPIO_PORT, &GPIO_InitStruct);
+
+    // Initialize the ECHO pin (PA1) as input
+    GPIO_InitStruct.Pin = ECHO_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIO_PORT, &GPIO_InitStruct);
+
+    // USART2 initialization (configured in STM32CubeMX)
+    huart2.Instance = USART2;
+    huart2.Init.BaudRate = 115200;  // Set baud rate
+    huart2.Init.WordLength = UART_WORDLENGTH_8B;
+    huart2.Init.StopBits = UART_STOPBITS_1;
+    huart2.Init.Parity = UART_PARITY_NONE;
+    huart2.Init.Mode = UART_MODE_TX_RX;
+    huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+    HAL_UART_Init(&huart2);
+
+    // Main loop
+    while (1) {
+        SendTrigPulse();  // Send pulse on TRIG pin
+        uint32_t duration = MeasureEchoDuration();  // Measure the duration of the pulse
+        float distance = CalculateDistance(duration);  // Calculate distance
+
+        // Print the distance via USART2 (Serial)
+        printf("Distance: %.2f cm\n", distance);
+
+        HAL_Delay(1000);  // Delay for 1 second before the next measurement
+    }
+}

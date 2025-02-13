@@ -1,0 +1,49 @@
+2025-02-10 12:21:43,043 [INFO] WebApp:190 - Connection lost
+2025-02-10 12:21:47,439 [INFO] WebApp:187 - Connection restablished
+2025-02-10 12:44:14,771 [INFO] WebApp:190 - Connection lost
+2025-02-10 12:54:09,017 [INFO] WebApp:187 - Connection restablished
+2025-02-10 13:11:47,073 [INFO] WebApp:190 - Connection lost
+2025-02-10 13:11:56,821 [INFO] WebApp:187 - Connection restablished
+2025-02-10 13:32:55,638 [INFO] WebApp:190 - Connection lost
+2025-02-10 14:11:26,499 [INFO] WebApp:187 - Connection restablished
+2025-02-10 14:31:22,039 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 483185688 Bytes (636485632)
+2025-02-10 14:31:23,305 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: NVIC
+2025-02-10 14:31:23,305 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: USART
+2025-02-10 14:31:23,305 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: SYS
+2025-02-10 14:31:23,306 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: GPIO
+2025-02-10 14:31:23,306 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: ADC
+2025-02-10 14:31:23,306 [INFO] BlockDiagram:2766 - set Specific Code input for plugin: RCC
+2025-02-10 14:31:23,309 [INFO] CodeGenerator:896 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.13.0.202411220809//db/
+2025-02-10 14:31:24,281 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/license.tmp_save
+2025-02-10 14:31:24,984 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/license.tmp
+2025-02-10 14:31:25,108 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/gpio.tmp_save
+2025-02-10 14:31:25,319 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/gpio.tmp
+2025-02-10 14:31:25,549 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/stm32f4xx_it.c_save
+2025-02-10 14:31:25,774 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/stm32f4xx_it.c
+2025-02-10 14:31:25,778 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/stm32f4xx_it.h_save
+2025-02-10 14:31:25,945 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/stm32f4xx_it.h
+2025-02-10 14:31:25,958 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/stm32f4xx_hal_msp.c_save
+2025-02-10 14:31:26,157 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/stm32f4xx_hal_msp.c
+2025-02-10 14:31:26,160 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/system.tmp_save
+2025-02-10 14:31:26,233 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/MXTmpFiles/system.tmp
+2025-02-10 14:31:26,241 [INFO] CodeEngine:311 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/stm32f4xx_hal_conf.h_save
+2025-02-10 14:31:26,348 [INFO] CodeEngine:335 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/stm32f4xx_hal_conf.h
+2025-02-10 14:31:26,461 [INFO] ApiDbMcu:508 - Load IP Config File for ADC1
+2025-02-10 14:31:26,466 [INFO] ApiDbMcu:508 - Load IP Config File for USART2
+2025-02-10 14:31:26,473 [INFO] ApiDbMcu:508 - Load IP Config File for RCC
+2025-02-10 14:31:26,481 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/main.h_save
+2025-02-10 14:31:26,613 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Inc/main.h
+2025-02-10 14:31:26,616 [INFO] CodeEngine:255 - oldGeneratedFile, /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/main.c_save
+2025-02-10 14:31:26,885 [INFO] CodeEngine:279 - Generated code: /Users/emin/STM32CubeIDE/newSpace/deff/Core/Src/main.c
+2025-02-10 14:31:27,298 [INFO] ProjectBuilder:3289 - Time for Copy HAL[1] : 89mS.
+2025-02-10 14:31:27,309 [INFO] ProjectBuilder:4876 - Project Generator version: 4.5.0-RC5
+2025-02-10 14:31:27,459 [INFO] ConfigFileManager:1579 - The Die is : DIE433
+2025-02-10 14:31:27,478 [INFO] ApiDbMcu:508 - Load IP Config File for FATFS
+2025-02-10 14:31:27,483 [INFO] ApiDbMcu:508 - Load IP Config File for FREERTOS
+2025-02-10 14:31:27,486 [INFO] ApiDbMcu:508 - Load IP Config File for LIBJPEG
+2025-02-10 14:31:27,498 [INFO] ApiDbMcu:508 - Load IP Config File for MBEDTLS
+2025-02-10 14:31:27,525 [INFO] ApiDbMcu:508 - Load IP Config File for USB_DEVICE
+2025-02-10 14:31:27,539 [INFO] ApiDbMcu:508 - Load IP Config File for USB_HOST
+2025-02-10 14:31:30,493 [INFO] ProjectBuilder:5154 - Time for Generating toolchain IDE Files: 3178mS.
+2025-02-10 14:31:30,499 [INFO] ProjectBuilder:3146 - Time for Copy CMSIS : 1mS.
+2025-02-10 14:31:30,501 [INFO] ProjectBuilder:3146 - Time for Copy CMSIS : 0mS.

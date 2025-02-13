@@ -1,10 +1,10 @@
-15:45:24 **** Incremental Build of configuration Debug for project deff ****
+15:09:52 **** Incremental Build of configuration Debug for project deff ****
 make -j7 all 
 arm-none-eabi-size  deff.elf 
    text	   data	    bss	    dec	    hex	filename
-  13308	     92	   2044	  15444	   3c54	deff.elf
+  13296	     92	   2044	  15432	   3c48	deff.elf
 Finished building: default.size.stdout
  
 
-15:45:24 Build Finished. 0 errors, 0 warnings. (took 167ms)
+15:09:52 Build Finished. 0 errors, 0 warnings. (took 263ms)
 
